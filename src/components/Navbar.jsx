@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "@headlessui/react";
 import CartOne from "./Carttwo";
 import Profile from "./Profile";
+import Orders from "./Orders";
 // import About from "./About";
 import { Link } from "react-router-dom";
 import Homepagecompfive from "./Homepagecompfive";
@@ -14,6 +15,7 @@ function Navbar() {
   const [openCart, setOpenCart] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openorders, setopenorders] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth(app);
   return (
@@ -45,14 +47,22 @@ function Navbar() {
             <a
               className="inline-block hover:cursor-pointer w-full py-2 mx-0 font-medium text-left md:ml-0 md:w-auto md:px-0 md:mx-2 md:text-center lg:mx-3 lg:font-bold"
               onClick={() => {
-                if (localStorage.getItem("Number")) {
+                
                   setOpenProfile(true);
-                } else {
-                  setOpenLogin(true);
-                }
+               
               }}
             >
               PROFILE
+            </a>
+            <a
+              className="inline-block hover:cursor-pointer w-full py-2 mx-0 font-medium text-left md:ml-0 md:w-auto md:px-0 md:mx-2 md:text-center lg:mx-3 lg:font-bold"
+              onClick={() => {
+                
+                  setopenorders(true);
+               
+              }}
+            >
+              ORDERS
             </a>
             <a
               className="inline-block w-full py-2 mx-0 font-medium text-left md:ml-0 md:w-auto md:px-0 md:mx-2 md:text-center lg:mx-3 lg:font-bold hover:cursor-pointer"
@@ -100,11 +110,9 @@ function Navbar() {
             <a
               className="inline-block w-full py-2 mx-0 font-medium text-left md:ml-0 md:w-auto md:px-0 md:mx-2 md:text-center lg:mx-3 lg:font-bold hover:cursor-pointer"
               onClick={() => {
-                if (localStorage.getItem("Number")) {
-                  setOpenProfile(true);
-                } else {
+                
                   setOpenLogin(true);
-                }
+                
               }}
             >
               LOGIN
@@ -211,12 +219,11 @@ function Navbar() {
                         (active ? "bg-primary text-white" : "")
                       }
                       // href="#"
-                      onClick={() => {
-                        if (localStorage.getItem("Number")) {
+                      onClick={(e) => {
+                        e.preventDefault();
+                          console.log("mudit tiwari")
                           setOpenProfile(true);
-                        } else {
-                          setOpenLogin(true);
-                        }
+                       
                       }}
                     >
                       Profile
@@ -231,6 +238,7 @@ function Navbar() {
       <Profile open={openProfile} setOpen={setOpenProfile} />
       <CartOne open={openCart} setOpen={setOpenCart} />
       <Login open={openLogin} setOpen={setOpenLogin} />
+      <Orders open={openorders} setOpen={setopenorders} />
     </>
   );
 }

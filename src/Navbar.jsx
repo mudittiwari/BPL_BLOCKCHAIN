@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-function Navbar()
+function AdminNavbar()
 {
     const navigate = useNavigate();
     return (
@@ -28,4 +28,4 @@ function Navbar()
     );
 }
 
-export default Navbar;
+export default AdminNavbar;

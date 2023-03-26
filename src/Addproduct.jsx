@@ -5,6 +5,7 @@ import Ecommerce from './abis/Ecommerce.json';
 import Web3 from 'web3';
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import AdminNavbar from "./Navbar";
 import app from './Firebase';
 function Addproduct() {
     
@@ -99,6 +100,7 @@ function Addproduct() {
     return (
         <>
             {/* <LoadingBar style={{ 'backgroundColor': 'red', 'zIndex': 10 }} ref={ref} /> */}
+            <AdminNavbar />
             <div className="w-3/4 mx-auto my-5">
                 <h1 className="text-black text-xl font-bold my-10 mx-auto w-1/2 text-center">Add Product</h1>
                 <div className="relative z-0 w-full mb-6 group">

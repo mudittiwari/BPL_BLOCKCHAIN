@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Ecommerce from './abis/Ecommerce.json';
 import Web3 from 'web3';
 import app from './Firebase';
+import AdminNavbar from './Navbar';
 
 
 function Products() {
@@ -72,6 +73,8 @@ function Products() {
     }, [])
     // console.log(elements);
     return (
+        <>
+        <AdminNavbar/>
         <div>
             <h1 className="text-black text-xl font-bold my-10 mx-auto w-1/2 text-center">products</h1>
             <ul>
@@ -130,6 +133,7 @@ function Products() {
                 })}
             </ul>
         </div>
+        </>
     );
 }
 export default Products;

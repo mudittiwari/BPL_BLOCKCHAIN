@@ -6,33 +6,13 @@ import { toast, ToastContainer } from "react-toastify";
 import Web3 from 'web3';
 import Ecommerce from '../abis/Ecommerce.json';
 import { async } from "@firebase/util";
-function Carttwo({ open, setOpen }) {
+function Orders({ open, setOpen }) {
   const [products, setproducts] = useState([]);
   const [account, setaccount] = useState('')
   const [subtotal, setsubtotal] = useState(0);
   const [ecommerce, setecommerce] = useState('')
   const [user, setuser] = useState(JSON.parse(localStorage.getItem("bpluser")));
-  const [openLogin, setOpenLogin] = useState(false);
-  const removeProduct = async (id) => {
-    try {
-      await ecommerce.methods.removefromcart(id, user.phone_number).send({ from: account }).on('receipt', async function (receipt) {
-        const cart = await ecommerce.methods.getcartitems(user.phone_number).call();
-        let arr = [];
-        let sum = 0;
-        for (let index = 0; index < cart.length; index++) {
-          const element = cart[index];
-          let prod = await ecommerce.methods.products(element).call();
-          arr.push(prod);
-          sum += parseInt(prod.price);
-        }
-        setproducts(arr);
-        setsubtotal(sum);
-        notify();
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
   const notify = () => toast.success("Product removed from cart", {
     position: toast.POSITION.BOTTOM_CENTER,
     autoClose: 1000,
@@ -43,16 +23,7 @@ function Carttwo({ open, setOpen }) {
     progress: undefined,
     // toastId: "007",
   });;
-  const notify2 = () => toast.success("Order has been created", {
-    position: toast.POSITION.BOTTOM_CENTER,
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    // toastId: "007",
-  });;
+ 
   async function loadWeb3() {
     if (window.ethereum) {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -125,7 +96,7 @@ function Carttwo({ open, setOpen }) {
                   <div className="flex h-full flex-col overflow-y-scroll bg-[#ffd4bd] shadow-xl">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium text-gray-900">Orders</Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <ToastContainer />
                           <button
@@ -169,7 +140,7 @@ function Carttwo({ open, setOpen }) {
                                     <div className="flex">
                                       <button
                                         onClick={() => {
-                                          removeProduct(product.id);
+                                        //   removeProduct(product.id);
                                         }}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -207,7 +178,6 @@ function Carttwo({ open, setOpen }) {
                             today = mm + '/' + dd + '/' + yyyy;
                             await ecommerce.methods.createorder(user.name, user.phone_number, products[0].title, products[0].quantity, today,subtotal).send({ from: account }).on('receipt', function (receipt) {
                               console.log("order created");
-                              notify2();
                             });
                           }}
 
@@ -236,11 +206,11 @@ function Carttwo({ open, setOpen }) {
             </div>
           </div>
         </div>
-        <Login open={openLogin} setOpen={setOpenLogin} />
+        {/* <Login open={openLogin} setOpen={setOpenLogin} /> */}
       </Dialog>
 
     </Transition.Root>
   );
 }
 
-export default Carttwo;
+export default Orders;

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Web3 from 'web3';
+import Ecommerce from '../abis/Ecommerce.json';
 import { users } from "../Constants";
 import {
   MDBCol,
@@ -16,20 +18,40 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
 function Profile({ open, setOpen }) {
-  const [users1, setusers1] = useState({});
-
-  useEffect(() => {
-    if (localStorage.getItem("Number")) {
-      const user = users.filter(
-        (user) => user.Number === localStorage.getItem("Number")
-      );
-      if (user) {
-        setusers1(user);
-      }
+  const [account, setaccount] = useState('')
+  const [ecommerce, setecommerce] = useState('')
+  const [user,setuser]=useState(JSON.parse(localStorage.getItem("bpluser")));
+  async function loadWeb3() {
+    if (window.ethereum) {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
     }
+
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    }
+  }
+
+  async function loadBlockchainData() {
+    const web3 = new Web3(window.ethereum);
+
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    setaccount(accounts[0])
+    const networkId = await web3.eth.net.getId()
+    const networkData = Ecommerce.networks[networkId]
+    if (networkData) {
+      const ecommerce_ = new web3.eth.Contract(Ecommerce.abi, networkData.address);
+      setecommerce(ecommerce_);
+      // changeusercounter(usercounter_);
+
+    } else {
+      window.alert('Ecommerce contract not deployed to detected network.')
+    }
+  }
+  useEffect(() => {
+    loadWeb3();
+    loadBlockchainData();
   }, []);
 
-  console.log(users1);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -110,7 +132,7 @@ function Profile({ open, setOpen }) {
                                       />
                                     </div>
                                     <p className="font-semibold text-xl">
-                                      {users1[0]?.name || ""}
+                                      {user.name || ""}
                                     </p>
                                     <p className="font-light text-xl">
                                       Bpl Card Holder
@@ -127,7 +149,15 @@ function Profile({ open, setOpen }) {
                                             AGE
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {users1[0]?.Age || ""}
+                                            {user.age || ""}
+                                          </MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol size="6" className="mb-3">
+                                          <MDBTypography tag="h6">
+                                            Gender
+                                          </MDBTypography>
+                                          <MDBCardText className="text-muted font-light">
+                                            {user.gender || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                         <MDBCol size="6" className="mb-3">
@@ -135,7 +165,15 @@ function Profile({ open, setOpen }) {
                                             Phone
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {users1[0]?.Number || ""}
+                                            {user.phone_number || ""}
+                                          </MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol size="6" className="mb-3">
+                                          <MDBTypography tag="h6">
+                                            Address
+                                          </MDBTypography>
+                                          <MDBCardText className="text-muted font-light">
+                                            {user.address_ || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                       </MDBRow>
@@ -147,24 +185,17 @@ function Profile({ open, setOpen }) {
                                       <MDBRow className="pt-1">
                                         <MDBCol size="6" className="mb-3">
                                           <p className="font-light">
-                                            {users1[0]?.bplCard || ""}
+                                            {/* {users1[0]?.bplCard || ""} */}
                                           </p>
 
                                           <MDBCardText className="text-muted"></MDBCardText>
                                         </MDBCol>
-                                        <MDBCol size="6" className="mb-3">
-                                          <MDBTypography tag="h6">
-                                            Address
-                                          </MDBTypography>
-                                          <MDBCardText className="text-muted font-light">
-                                            {users1[0]?.address || ""}
-                                          </MDBCardText>
-                                        </MDBCol>
+                                       
                                       </MDBRow>
 
                                       <div class="block md:flex items-center justify-between xs:pr-4">
                                         <div>
-                                          <button
+                                          {/* <button
                                             alt="LOG OUT"
                                             onClick={
                                               () => {
@@ -182,7 +213,7 @@ function Profile({ open, setOpen }) {
                                             <i>O</i>
                                             <i>U</i>
                                             <i>T</i>
-                                          </button>
+                                          </button> */}
                                         </div>
                                       </div>
                                     </MDBCardBody>
