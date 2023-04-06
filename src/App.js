@@ -13,6 +13,7 @@ import AOS from "aos";
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Otp from './components/OTP';
+import Homepagecompsix from './components/Homepagecompsix';
 function App() {
   useEffect(() => {
     AOS.init({
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<Homepagecompsix />} />
           <Route exact path="/otp" element={<Otp />} />
           <Route exact path="/addproduct" element={<Addproduct />} />
           <Route exact path="/complain" element={<Complains />} />

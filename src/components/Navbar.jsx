@@ -4,8 +4,8 @@ import CartOne from "./Carttwo";
 import Profile from "./Profile";
 import Orders from "./Orders";
 // import About from "./About";
-import { Link } from "react-router-dom";
 import Homepagecompfive from "./Homepagecompfive";
+import { Link } from "react-router-dom";
 import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
@@ -36,12 +36,12 @@ function Navbar() {
               HOME
             </a> */}
             {/* <Link to="/about" > */}
-            <a
+            <Link
               className="inline-block w-full py-2 mx-0 font-medium text-left md:ml-0 md:w-auto md:px-0 md:mx-2 md:text-center lg:mx-3 lg:font-bold hover:cursor-pointer"
-              href="/about"
+              to="/about"
             >
               ABOUT
-            </a>
+            </Link>
             
             {/* </Link> */}
             <a

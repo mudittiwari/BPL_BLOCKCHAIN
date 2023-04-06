@@ -132,7 +132,7 @@ function Profile({ open, setOpen }) {
                                       />
                                     </div>
                                     <p className="font-semibold text-xl">
-                                      {user.name || ""}
+                                      {user?.name || ""}
                                     </p>
                                     <p className="font-light text-xl">
                                       Bpl Card Holder
@@ -149,7 +149,7 @@ function Profile({ open, setOpen }) {
                                             AGE
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {user.age || ""}
+                                            {user?.age || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                         <MDBCol size="6" className="mb-3">
@@ -157,7 +157,7 @@ function Profile({ open, setOpen }) {
                                             Gender
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {user.gender || ""}
+                                            {user?.gender || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                         <MDBCol size="6" className="mb-3">
@@ -165,7 +165,7 @@ function Profile({ open, setOpen }) {
                                             Phone
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {user.phone_number || ""}
+                                            {user?.phone_number || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                         <MDBCol size="6" className="mb-3">
@@ -173,7 +173,7 @@ function Profile({ open, setOpen }) {
                                             Address
                                           </MDBTypography>
                                           <MDBCardText className="text-muted font-light">
-                                            {user.address_ || ""}
+                                            {user?.address_ || ""}
                                           </MDBCardText>
                                         </MDBCol>
                                       </MDBRow>

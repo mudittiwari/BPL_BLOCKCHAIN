@@ -2,13 +2,13 @@ export const Homepagecompthree = () => {
   return (
     <div className="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row mt-10 py-5 lg:px-10 xl:px-10 2xl:px-10 px-4">
       <div className="lg:px-14 xl:px-14 2xl:px-14 lg:w-1/2 xl:w-1/2 2xl:w-1/2 w-full flex-col justify-center ">
-        <h1 className="text-2xl font-bold" style={{'color':'#e48c71'}}  data-aos="fade-up">PRODUCTS GOVT GIVE UNDER CARDS</h1>
-        <h1 className="font-bold mt-10 text-5xl" data-aos="fade-up">&#x2022; WHEAT</h1>
-        <h1 className="text-5xl font-bold " data-aos="fade-up">&#x2022; SUGAR</h1>
-        <h1 className="text-5xl font-bold " data-aos="fade-up">&#x2022; RICE</h1>
-        <h1 className="text-5xl font-bold " data-aos="fade-up">&#x2022; LPG</h1>
-        <h1 className="text-5xl font-bold " data-aos="fade-up">&#x2022; KEROSENE</h1>
-        <h1 className="text-5xl font-bold " data-aos="fade-up">&#x2022; FERTILIZERS</h1>
+        <h1 className="text-4xl font-bold" style={{'color':'#e48c71'}}  data-aos="fade-up">PRODUCTS GOVT GIVE UNDER CARDS</h1>
+        <h1 className="font-bold mt-10 text-3xl" data-aos="fade-up">&#x2022; WHEAT</h1>
+        <h1 className="text-3xl font-bold " data-aos="fade-up">&#x2022; SUGAR</h1>
+        <h1 className="text-3xl font-bold " data-aos="fade-up">&#x2022; RICE</h1>
+        <h1 className="text-3xl font-bold " data-aos="fade-up">&#x2022; LPG</h1>
+        <h1 className="text-3xl font-bold " data-aos="fade-up">&#x2022; KEROSENE</h1>
+        <h1 className="text-3xl font-bold " data-aos="fade-up">&#x2022; FERTILIZERS</h1>
         <p className="font-bold mt-3 text-base " data-aos="fade-up">
         Get your monthly supplies of ration food delivered here.
         </p>
